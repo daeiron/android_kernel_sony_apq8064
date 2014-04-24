@@ -509,12 +509,12 @@ int hidraw_report_event(struct hid_device *hid, u8 *data, int len)
 	int ret = 0;
 
 	list_for_each_entry(list, &dev->list, node) {
+		int new_head = (list->head + 1) & (HIDRAW_BUFFER_SIZE - 1);
 #ifdef CONFIG_HID_SONY_PS3_CTRL_BT
 		if (list < (struct hidraw_list *)PAGE_OFFSET
 				|| !(list->node.next))
 			break;
 #endif
-		int new_head = (list->head + 1) & (HIDRAW_BUFFER_SIZE - 1);
 
 		if (new_head == list->tail)
 			continue;
