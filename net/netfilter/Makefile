@@ -1,6 +1,7 @@
 netfilter-objs := core.o nf_log.o nf_queue.o nf_sockopt.o
 
-LOCAL_CFLAGS := -fno-loop-interchange -fno-loop-strip-mine -fno-loop-block -fno-graphite -fno-loop-parallelize-all
+# Graphite causes a toolchain (sm 4.10) bug (segmentation fault) on nf_conntrack_core.o, so disable for netfilter
+CFLAGS_KERNEL = -fno-loop-interchange -fno-loop-strip-mine -fno-loop-block -fno-graphite -fno-loop-parallelize-all
 
 nf_conntrack-y	:= nf_conntrack_core.o nf_conntrack_standalone.o nf_conntrack_expect.o nf_conntrack_helper.o nf_conntrack_proto.o nf_conntrack_l3proto_generic.o nf_conntrack_proto_generic.o nf_conntrack_proto_tcp.o nf_conntrack_proto_udp.o nf_conntrack_extend.o nf_conntrack_acct.o
 nf_conntrack-$(CONFIG_NF_CONNTRACK_TIMEOUT) += nf_conntrack_timeout.o
