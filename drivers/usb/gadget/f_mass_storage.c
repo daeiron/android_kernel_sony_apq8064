@@ -828,8 +828,6 @@ static int do_read(struct fsg_common *common)
 	amount_left = common->data_size_from_cmnd;
 	if (unlikely(amount_left == 0))
 		return -EIO;		/* No default reply */
-	if (curlun->cdrom)
-		amount_left <<= 2;
 
 	for (;;) {
 		/*
