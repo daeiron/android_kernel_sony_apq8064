@@ -24,10 +24,10 @@
 
 #ifdef CONFIG_MSM_DCVS
 static struct msm_dcvs_freq_entry grp3d_freq[] = {
-	{0, 900, 0, 0, 0},
-	{0, 950, 0, 0, 0},
-	{0, 950, 0, 0, 0},
-	{0, 1200, 1, 100, 100},
+	{128000000, 0, 333932},
+	{200000000, 0, 497532},
+	{320000000, 0, 707610},
+	{400000000, 0, 844545},
 };
 
 static struct msm_dcvs_core_info grp3d_core_info = {
@@ -52,6 +52,7 @@ static struct msm_dcvs_core_info grp3d_core_info = {
 		.ss_win_size_max_us	= 1000000,
 		.ss_util_pct		= 95,
 		.ss_no_corr_below_freq	= 0,
+		.ss_iobusy_conv		= 100,
 	},
 
 	.energy_coeffs		= {
