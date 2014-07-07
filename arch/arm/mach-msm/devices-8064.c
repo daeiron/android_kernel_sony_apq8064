@@ -3052,28 +3052,47 @@ struct platform_device apq8064_dcvs_device = {
 	},
 };
 
-static struct msm_dcvs_core_info apq8064_core_info = {
+static struct msm_dcvs_freq_entry apq8064_freq[] = {
+	{ 384000, 166981,  345600},
+	{ 702000, 213049,  632502},
+	{1026000, 285712,  925613},
+	{1242000, 383945, 1176550},
+	{1458000, 419729, 1465478},
+	{1512000, 434116, 1546674},
+
+};
+
++static struct msm_dcvs_core_info apq8064_core_info = {
 	.num_cores		= 4,
 	.sensors		= (int[]){7, 8, 9, 10},
 	.thermal_poll_ms	= 60000,
+	.freq_tbl 		= &apq8064_freq[0],
 	.core_param		= {
 		.core_type	= MSM_DCVS_CORE_TYPE_CPU,
+		.max_time_us 	= 100000,
+		.num_freq 	= ARRAY_SIZE(apq8064_freq),
 	},
 	.algo_param		= {
 		.disable_pc_threshold		= 1458000,
 		.em_win_size_min_us		= 100000,
 		.em_win_size_max_us		= 300000,
+		.em_window_size 		= 100000,
 		.em_max_util_pct		= 97,
 		.group_id			= 1,
 		.max_freq_chg_time_us		= 100000,
+		.scale_slack_time 		= 0,
+		.scale_slack_time_pct 		= 0,
 		.slack_mode_dynamic		= 0,
 		.slack_weight_thresh_pct	= 3,
+		.slack_time_us 			= 58000,
 		.slack_time_min_us		= 45000,
 		.slack_time_max_us		= 45000,
 		.ss_no_corr_below_freq		= 0,
+		.ss_window_size 		= 1000000,
 		.ss_win_size_min_us		= 1000000,
 		.ss_win_size_max_us		= 1000000,
 		.ss_util_pct			= 95,
+		.ss_iobusy_conv 		= 100,
 	},
 	.energy_coeffs		= {
 		.active_coeff_a		= 336,
@@ -3087,7 +3106,7 @@ static struct msm_dcvs_core_info apq8064_core_info = {
 	},
 	.power_param		= {
 		.current_temp	= 25,
-		.num_freq	= 0, /* set at runtime */
+		.num_freq	= ARRAY_SIZE(apq8064_freq), /* set at runtime */
 	}
 };
 
@@ -3102,7 +3121,7 @@ struct platform_device apq8064_msm_gov_device = {
 	.name = "msm_dcvs_gov",
 	.id = -1,
 	.dev = {
-		.platform_data = &gov_platform_data,
+		.platform_data = &apq8064_core_info,
 	},
 };
 
