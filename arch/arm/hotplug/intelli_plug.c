@@ -344,6 +344,7 @@ static void set_max_freq(int cpu, uint32_t max_freq)
 	if (!policy)
 		return;
 
+	cpufreq_driver_target(policy, policy->cur, CPUFREQ_RELATION_H);
 	cpufreq_cpu_put(policy);
 }
 
