@@ -152,7 +152,6 @@ static void __cpuinit asmp_late_resume(struct power_suspend *h) {
 }
 
 static struct power_suspend __refdata asmp_power_suspend_handler = {
-	.level = power_suspend_LEVEL_BLANK_SCREEN,
 	.suspend = asmp_power_suspend,
 	.resume = asmp_late_resume,
 };
