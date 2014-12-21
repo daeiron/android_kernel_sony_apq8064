@@ -60,7 +60,67 @@ struct kgsl_dma_buf_meta {
 	struct sg_table *table;
 };
 
+<<<<<<< HEAD
 static void kgsl_mem_entry_detach_process(struct kgsl_mem_entry *entry);
+=======
+static struct {
+	struct memfree_entry *list;
+	unsigned int head;
+	unsigned int tail;
+} memfree;
+
+/**
+ * kgsl_hang_check() - Check for GPU hang
+ * data: KGSL device structure
+ *
+ * This function is called every KGSL_TIMEOUT_HANG_DETECT time when
+ * GPU is active to check for hang. If a hang is detected we
+ * trigger fault tolerance.
+ */
+void kgsl_hang_check(struct work_struct *work)
+{
+	struct kgsl_device *device = container_of(work, struct kgsl_device,
+							hang_check_ws);
+	static unsigned int prev_reg_val[FT_DETECT_REGS_COUNT];
+
+	mutex_lock(&device->mutex);
+
+	if (device->state == KGSL_STATE_ACTIVE) {
+
+		/* Check to see if the GPU is hung */
+		if (adreno_ft_detect(device, prev_reg_val))
+			adreno_dump_and_exec_ft(device);
+
+		mod_timer(&device->hang_timer,
+			(jiffies + msecs_to_jiffies(KGSL_TIMEOUT_HANG_DETECT)));
+	}
+
+	mutex_unlock(&device->mutex);
+}
+
+/**
+ * hang_timer() - Hang timer function
+ * data: KGSL device structure
+ *
+ * This function is called when hang timer expires, in this
+ * function we check if GPU is in active state and queue the
+ * work on device workqueue to check for the hang. We restart
+ * the timer after KGSL_TIMEOUT_HANG_DETECT time.
+ */
+void hang_timer(unsigned long data)
+{
+	struct kgsl_device *device = (struct kgsl_device *) data;
+
+	/* check Hang only for 3d device */
+	if (device->id == KGSL_DEVICE_3D0) {
+		if (device->state == KGSL_STATE_ACTIVE) {
+
+			/* Have work run in a non-interrupt context. */
+			queue_work(device->work_queue, &device->hang_check_ws);
+		}
+	}
+}
+>>>>>>> cd1c2e670a5f11f31a54b4168093023493a29c18
 
 /**
  * kgsl_trace_issueibcmds() - Call trace_issueibcmds by proxy
@@ -461,6 +521,7 @@ int kgsl_context_init(struct kgsl_device_private *dev_priv,
 	}
 
 	kref_init(&context->refcount);
+<<<<<<< HEAD
 	/*
 	 * Get a refernce to the process private so its not destroyed, until
 	 * the context is destroyed. This will also prevent the pagetable
@@ -469,12 +530,18 @@ int kgsl_context_init(struct kgsl_device_private *dev_priv,
 	if (!kgsl_process_private_get(dev_priv->process_priv))
 		goto fail_free_id;
 	context->device = dev_priv->device;
+=======
+>>>>>>> cd1c2e670a5f11f31a54b4168093023493a29c18
 	context->dev_priv = dev_priv;
 	context->proc_priv = dev_priv->process_priv;
 	context->pid = task_tgid_nr(current);
 
 	ret = kgsl_sync_timeline_create(context);
+<<<<<<< HEAD
 	if (ret)
+=======
+	if (ret) {
+>>>>>>> cd1c2e670a5f11f31a54b4168093023493a29c18
 		goto fail_free_id;
 
 	/* Initialize the pending event list */
@@ -535,8 +602,18 @@ int kgsl_context_detach(struct kgsl_context *context)
 	 * detached, to avoid possibly freeing memory while
 	 * it is still in use by the GPU.
 	 */
+<<<<<<< HEAD
 	kgsl_context_cancel_events(context->device, context);
 
+=======
+	kgsl_context_cancel_events(device, context);
+
+	write_lock(&device->context_lock);
+	context->id = KGSL_CONTEXT_INVALID;
+	idr_remove(&device->context_idr, id);
+	write_unlock(&device->context_lock);
+	context->dev_priv = NULL;
+>>>>>>> cd1c2e670a5f11f31a54b4168093023493a29c18
 	kgsl_context_put(context);
 
 	return ret;
@@ -576,9 +653,13 @@ kgsl_context_destroy(struct kref *kref)
 	}
 	write_unlock(&device->context_lock);
 	kgsl_sync_timeline_destroy(context);
+<<<<<<< HEAD
 	kgsl_process_private_put(context->proc_priv);
 
 	device->ftbl->drawctxt_destroy(context);
+=======
+	kfree(context);
+>>>>>>> cd1c2e670a5f11f31a54b4168093023493a29c18
 }
 
 struct kgsl_device *kgsl_get_device(int dev_idx)

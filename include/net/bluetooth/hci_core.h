@@ -780,6 +780,17 @@ struct hci_proto {
 	int (*destroy_cfm)	(struct hci_chan *chan, __u8 status);
 };
 
+struct sco_cb {
+	struct list_head list;
+	char *name;
+	void (*connect_state_changed)	(u8 state);
+};
+
+struct sco_proto {
+	void (*register_cb)	(struct sco_cb *cb);
+	void (*unregister_cb)	(struct sco_cb *cb);
+};
+
 static inline int hci_proto_connect_ind(struct hci_dev *hdev, bdaddr_t *bdaddr, __u8 type)
 {
 	register struct hci_proto *hp;
@@ -913,6 +924,9 @@ static inline void hci_proto_destroy_cfm(struct hci_chan *chan, __u8 status)
 int hci_register_proto(struct hci_proto *hproto);
 int hci_unregister_proto(struct hci_proto *hproto);
 
+int hci_sco_register_proto(struct sco_proto *sp);
+int hci_sco_unregister_proto(void);
+
 /* ----- HCI callbacks ----- */
 struct hci_cb {
 	struct list_head list;
@@ -1018,6 +1032,9 @@ void hci_amp_event_packet(struct hci_dev *hdev, __u8 ev_code,
 int hci_register_amp(struct amp_mgr_cb *acb);
 int hci_unregister_amp(struct amp_mgr_cb *acb);
 
+bool hci_get_sco_status(struct hci_conn *conn);
+void hci_register_sco_cb(struct sco_cb *cb, bool reg);
+
 int hci_send_cmd(struct hci_dev *hdev, __u16 opcode, __u32 plen, void *param);
 void hci_send_acl(struct hci_conn *conn, struct hci_chan *chan,
 		struct sk_buff *skb, __u16 flags);
@@ -1110,7 +1127,6 @@ void hci_le_conn_update(struct hci_conn *conn, u16 min, u16 max,
 					u16 latency, u16 to_multiplier);
 void hci_le_start_enc(struct hci_conn *conn, __le16 ediv, __u8 rand[8],
 							__u8 ltk[16]);
-void hci_le_ltk_reply(struct hci_conn *conn, u8 ltk[16]);
 void hci_le_ltk_neg_reply(struct hci_conn *conn);
 
 void hci_read_rssi(struct hci_conn *conn);
