@@ -30,7 +30,6 @@
 #include <sound/pcm.h>
 #include <sound/initval.h>
 #include <sound/soc.h>
-#include <linux/slab.h>
 #include "msm7kv2-pcm.h"
 
 static struct snd_soc_dai_driver msm_pcm_codec_dais[] = {

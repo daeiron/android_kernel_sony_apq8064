@@ -1,4 +1,5 @@
 /* Copyright (c) 2010-2013, The Linux Foundation. All rights reserved.
+ * Copyright (C) 2014 Sony Mobile Communications AB.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 and
@@ -9,6 +10,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+ * NOTE: This file has been modified by Sony Mobile Communications AB.
+ * Modifications are licensed under the License.
  */
 
 #include <linux/module.h>
@@ -33,7 +36,6 @@
 #include <mach/socinfo.h>
 #include <mach/system.h>
 #include <mach/scm.h>
-#include <mach/socinfo.h>
 #include <mach/msm-krait-l2-accessors.h>
 #include <asm/cacheflush.h>
 #include <asm/hardware/gic.h>
@@ -970,32 +972,6 @@ int msm_pm_idle_enter(enum msm_pm_sleep_mode sleep_mode)
 
 cpuidle_enter_bail:
 	return 0;
-}
-
-int msm_pm_wait_cpu_shutdown(unsigned int cpu)
-{
-	int timeout = 0;
-
-	if (!msm_pm_slp_sts)
-		return 0;
-	if (!msm_pm_slp_sts[cpu].base_addr)
-		return 0;
-	while (1) {
-		/*
-		 * Check for the SPM of the core being hotplugged to set
-		 * its sleep state.The SPM sleep state indicates that the
-		 * core has been power collapsed.
-		 */
-		int acc_sts = __raw_readl(msm_pm_slp_sts[cpu].base_addr);
-
-		if (acc_sts & msm_pm_slp_sts[cpu].mask)
-			return 0;
-		udelay(100);
-		WARN(++timeout == 10, "CPU%u didn't collape within 1ms\n",
-					cpu);
-	}
-
-	return -EBUSY;
 }
 
 void msm_pm_cpu_enter_lowpower(unsigned int cpu)

@@ -22,7 +22,6 @@
 #include <linux/list.h>
 #include <linux/kfifo.h>
 #include <linux/slab.h>
-#include <linux/types.h>
 #include <linux/platform_device.h>
 #include <linux/delay.h>
 #include <mach/subsystem_notif.h>

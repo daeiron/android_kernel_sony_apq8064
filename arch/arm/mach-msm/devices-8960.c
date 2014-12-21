@@ -50,7 +50,6 @@
 #include "rpm_stats.h"
 #include "pil-q6v4.h"
 #include "scm-pas.h"
-#include <mach/msm_dcvs.h>
 #include <mach/iommu_domains.h>
 #include <mach/socinfo.h>
 #include "pm.h"

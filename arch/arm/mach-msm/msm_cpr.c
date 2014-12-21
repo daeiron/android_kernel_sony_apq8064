@@ -28,7 +28,6 @@
 #include <linux/platform_device.h>
 #include <linux/cpufreq.h>
 #include <linux/iopoll.h>
-#include <linux/delay.h>
 #include <linux/regulator/consumer.h>
 
 #include <mach/irqs.h>

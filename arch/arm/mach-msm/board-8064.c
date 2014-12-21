@@ -37,7 +37,6 @@
 #include <linux/i2c/isa1200.h>
 #include <linux/gpio_keys.h>
 #include <linux/epm_adc.h>
-#include <linux/i2c/sx150x.h>
 #include <asm/mach-types.h>
 #include <asm/mach/arch.h>
 #include <asm/hardware/gic.h>
@@ -75,8 +74,6 @@
 #include <linux/fmem.h>
 #include <mach/msm_pcie.h>
 #include <mach/restart.h>
-#include <mach/msm_iomap.h>
-#include <mach/msm_serial_hs.h>
 
 #include "msm_watchdog.h"
 #include "board-8064.h"
@@ -2600,6 +2597,8 @@ static struct platform_device *common_devices[] __initdata = {
 	&battery_bcl_device,
 #endif
 	&apq8064_msm_mpd_device,
+	&apq8064_cpu_idle_device,
++	&apq8064_msm_gov_device,
 };
 
 static struct platform_device *cdp_devices[] __initdata = {

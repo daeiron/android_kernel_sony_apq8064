@@ -60,7 +60,6 @@
 #include <wlan_hdd_includes.h>
 #include <net/arp.h>
 #include <net/cfg80211.h>
-#include <linux/wireless.h>
 #include <wlan_hdd_wowl.h>
 #include <aniGlobal.h>
 #include "ccmApi.h"
@@ -75,7 +74,6 @@
 #include "sapInternal.h"
 #include "wlan_hdd_softap_tx_rx.h"
 #include "wlan_hdd_main.h"
-#include "wlan_hdd_assoc.h"
 #include "wlan_hdd_power.h"
 #ifdef WLAN_BTAMP_FEATURE
 #include "bap_hdd_misc.h"

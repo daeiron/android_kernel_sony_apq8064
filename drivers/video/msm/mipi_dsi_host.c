@@ -11,6 +11,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
+ * NOTE: This file has been modified by Sony Mobile Communications AB.
+ * Modifications are licensed under the License.
  */
 
 #include <linux/module.h>
@@ -27,7 +29,6 @@
 #include <linux/clk.h>
 #include <linux/iopoll.h>
 #include <linux/platform_device.h>
-#include <linux/iopoll.h>
 
 #include <asm/system.h>
 #include <asm/mach-types.h>

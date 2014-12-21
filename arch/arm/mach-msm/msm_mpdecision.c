@@ -23,7 +23,6 @@
 #include <linux/hrtimer.h>
 #include <linux/slab.h>
 #include <linux/spinlock.h>
-#include <linux/cpu.h>
 #include <linux/stringify.h>
 #include <linux/sched.h>
 #include <linux/platform_device.h>
@@ -31,7 +30,6 @@
 #include <linux/cpu_pm.h>
 #include <linux/cpu.h>
 #include <linux/cpufreq.h>
-#include <linux/sched.h>
 #include <linux/rq_stats.h>
 #include <asm/atomic.h>
 #include <asm/page.h>

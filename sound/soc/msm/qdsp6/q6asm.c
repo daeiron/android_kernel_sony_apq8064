@@ -20,7 +20,6 @@
 #include <linux/uaccess.h>
 #include <linux/sched.h>
 #include <linux/dma-mapping.h>
-#include <linux/miscdevice.h>
 #include <linux/delay.h>
 #include <linux/spinlock.h>
 #include <linux/slab.h>

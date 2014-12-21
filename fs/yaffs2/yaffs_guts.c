@@ -20,8 +20,6 @@
 
 #include "yaffs_tagscompat.h"
 
-#include "yaffs_nand.h"
-
 #include "yaffs_yaffs1.h"
 #include "yaffs_yaffs2.h"
 #include "yaffs_bitmap.h"

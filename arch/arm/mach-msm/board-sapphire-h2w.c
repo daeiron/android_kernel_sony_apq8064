@@ -71,7 +71,6 @@
 #include <linux/err.h>
 #include <linux/hrtimer.h>
 #include <linux/switch.h>
-#include <linux/input.h>
 #include <linux/debugfs.h>
 #include <linux/gpio.h>
 #include <asm/atomic.h>

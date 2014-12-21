@@ -45,7 +45,6 @@
 #include <linux/msm_thermal.h>
 #include <linux/input/synaptics_dsx.h>
 
-#include <linux/slimbus/slimbus.h>
 #include <linux/mfd/wcd9xxx/core.h>
 #include <linux/mfd/wcd9xxx/pdata.h>
 

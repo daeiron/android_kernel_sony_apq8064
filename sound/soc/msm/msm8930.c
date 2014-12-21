@@ -15,7 +15,6 @@
 #include <linux/gpio.h>
 #include <linux/mfd/pm8xxx/spk.h>
 #include <linux/platform_device.h>
-#include <linux/gpio.h>
 #include <linux/slab.h>
 #include <sound/core.h>
 #include <sound/soc.h>

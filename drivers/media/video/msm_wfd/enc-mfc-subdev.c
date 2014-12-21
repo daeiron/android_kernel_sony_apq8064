@@ -1,4 +1,5 @@
 /* Copyright (c) 2012-2013, Linux Foundation. All rights reserved.
+* Copyright (C) 2013 Sony Mobile Communications AB.
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License version 2 and
@@ -9,6 +10,8 @@
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 * GNU General Public License for more details.
 *
+* NOTE: This file has been modified by Sony Mobile Communications AB.
+* Modifications are licensed under the License.
 */
 
 #include <media/v4l2-subdev.h>
@@ -2071,6 +2074,14 @@ static long venc_alloc_recon_buffers(struct v4l2_subdev *sd, void *arg)
 			client_ctx->recon_buffer_ion_handle[i]
 				= ion_alloc(client_ctx->user_ion_client,
 			control.size, SZ_8K, heap_mask, ion_flags);
+
+			if (IS_ERR_OR_NULL(
+				client_ctx->recon_buffer_ion_handle[i])) {
+				WFD_MSG_ERR("%s() :WFD ION alloc failed\n",
+					__func__);
+				rc = -ENOMEM;
+				goto bail_out;
+			}
 
 			if (IS_ERR_OR_NULL(
 				client_ctx->recon_buffer_ion_handle[i])) {

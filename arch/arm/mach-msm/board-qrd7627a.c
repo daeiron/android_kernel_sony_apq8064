@@ -48,17 +48,14 @@
 #include <mach/pmic.h>
 #include <mach/socinfo.h>
 #include <mach/vreg.h>
-#include <mach/rpc_pmapp.h>
 #include <mach/msm_battery.h>
 #include <mach/rpc_server_handset.h>
-#include <mach/socinfo.h>
 #include "board-msm7x27a-regulator.h"
 #include "devices.h"
 #include "devices-msm7x2xa.h"
 #include "pm.h"
 #include "timer.h"
 #include "pm-boot.h"
-#include "board-msm7x27a-regulator.h"
 #include "board-msm7627a.h"
 
 #define PMEM_KERNEL_EBI1_SIZE	0x3A000

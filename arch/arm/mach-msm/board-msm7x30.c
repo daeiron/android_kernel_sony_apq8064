@@ -85,14 +85,11 @@
 #include "clock.h"
 #include <mach/dal_axi.h>
 #include <mach/msm_serial_hs.h>
-#include <mach/qdsp5v2/mi2s.h>
-#include <mach/qdsp5v2/audio_dev_ctl.h>
 #include <mach/sdio_al.h>
 #include "smd_private.h"
 #include <linux/bma150.h>
 
 #include "board-msm7x30-regulator.h"
-#include "pm.h"
 
 #define MSM_PMEM_SF_SIZE	0x1700000
 #ifdef CONFIG_FB_MSM_TRIPLE_BUFFER

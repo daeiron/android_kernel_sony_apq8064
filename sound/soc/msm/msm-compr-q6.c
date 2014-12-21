@@ -31,7 +31,6 @@
 #include <linux/dma-mapping.h>
 #include <linux/android_pmem.h>
 #include <sound/timer.h>
-#include <sound/pcm.h>
 
 #include "msm-compr-q6.h"
 #include "msm-pcm-routing.h"

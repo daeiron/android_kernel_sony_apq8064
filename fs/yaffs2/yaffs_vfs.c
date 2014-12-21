@@ -79,7 +79,6 @@ static uint32_t YCALCBLOCKS(uint64_t partition_size, uint32_t block_size)
 }
 
 #include <linux/uaccess.h>
-#include <linux/mtd/mtd.h>
 
 #include "yportenv.h"
 #include "yaffs_trace.h"

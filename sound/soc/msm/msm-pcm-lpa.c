@@ -31,7 +31,6 @@
 #include <sound/compress_offload.h>
 #include <sound/compress_driver.h>
 #include <sound/timer.h>
-#include <sound/pcm.h>
 
 #include "msm-pcm-q6.h"
 #include "msm-pcm-routing.h"

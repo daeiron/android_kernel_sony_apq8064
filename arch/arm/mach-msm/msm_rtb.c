@@ -21,7 +21,6 @@
 #include <linux/sched.h>
 #include <linux/slab.h>
 #include <linux/string.h>
-#include <linux/atomic.h>
 #include <linux/of.h>
 #include <asm/io.h>
 #include <asm-generic/sizes.h>

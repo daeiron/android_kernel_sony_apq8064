@@ -14,7 +14,6 @@
 #include <linux/gpio_event.h>
 #include <linux/memblock.h>
 #include <asm/mach-types.h>
-#include <linux/memblock.h>
 #include <asm/mach/arch.h>
 #include <asm/hardware/gic.h>
 #include <mach/board.h>
@@ -37,14 +36,11 @@
 #include <asm/mach/mmc.h>
 #include <linux/i2c.h>
 #include <linux/i2c/sx150x.h>
-#include <linux/gpio.h>
 #include <linux/android_pmem.h>
 #include <linux/bootmem.h>
 #include <linux/mfd/marimba.h>
-#include <mach/vreg.h>
 #include <linux/power_supply.h>
 #include <linux/regulator/consumer.h>
-#include <mach/rpc_pmapp.h>
 #include <mach/msm_battery.h>
 #include <linux/smsc911x.h>
 #include <linux/atmel_maxtouch.h>
@@ -56,7 +52,6 @@
 #include "devices-msm7x2xa.h"
 #include "pm.h"
 #include <mach/rpc_server_handset.h>
-#include <mach/socinfo.h>
 #include "pm-boot.h"
 #include "board-msm7627a.h"
 

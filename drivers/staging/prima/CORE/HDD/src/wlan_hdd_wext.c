@@ -101,7 +101,6 @@
 #include "wlan_hdd_packet_filtering.h"
 #endif
 
-#include <linux/wireless.h>
 #include <net/cfg80211.h>
 #include "wlan_qct_pal_trace.h"
 #include "wlan_qct_tl.h"

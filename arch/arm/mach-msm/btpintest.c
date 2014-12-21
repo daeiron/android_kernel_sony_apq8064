@@ -17,7 +17,6 @@
 #include <linux/uaccess.h>
 #include <linux/version.h>
 #include <linux/debugfs.h>
-#include <linux/kernel.h>
 #include <linux/param.h>
 #include <linux/platform_device.h>
 #include <linux/gpio.h>

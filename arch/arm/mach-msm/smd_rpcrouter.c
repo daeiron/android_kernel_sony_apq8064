@@ -41,8 +41,6 @@
 #include <linux/uaccess.h>
 #include <linux/debugfs.h>
 
-#include <asm/byteorder.h>
-
 #include <mach/msm_smd.h>
 #include <mach/smem_log.h>
 #include <mach/subsystem_notif.h>

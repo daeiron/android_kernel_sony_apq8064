@@ -20,13 +20,11 @@
 #include <linux/bitrev.h>
 #include <linux/bitops.h>
 #include <linux/module.h>
-//#include <linux/export.h>
 #include <linux/i2c.h>
 #include <linux/gpio.h>
 #include <asm/unaligned.h>
 #include <sound/core.h>
 #include <sound/control.h>
-#include <sound/pcm.h>
 #include <sound/cs8427.h>
 #include <sound/asoundef.h>
 #include <sound/pcm.h>

@@ -35,7 +35,6 @@
 #include <linux/delay.h>
 #include <linux/android_pmem.h>
 #include <mach/msm_rpcrouter.h>
-#include <mach/msm_iomap.h>
 #include <asm/mach/mmc.h>
 
 static char *df_serialno = "000000000000";
